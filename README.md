@@ -25,9 +25,3 @@ No build tools needed — it's plain HTML/CSS/JS.
   python3 -m http.server 8000
   ```
   then open `http://localhost:8000`.
-
-## Customizing
-
-- Swap the placeholder name, project names/links, and contact details directly in `index.html`.
-- Theme colors and spacing live at the top of `css/style.css` under `:root` (dark) and `[data-theme="light"]`.
-- Fonts are loaded from Google Fonts in the `<head>` of `index.html` (Space Grotesk, Inter, JetBrains Mono).
