@@ -21,17 +21,18 @@
 
   // mobile menu
   var trigger = document.getElementById('menuTrigger');
-  var panel = document.getElementById('mobilePanel');
-  trigger.addEventListener('click', function(){
-    trigger.classList.toggle('open');
-    panel.classList.toggle('open');
-  });
-  panel.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click', function(){
-      trigger.classList.remove('open');
-      panel.classList.remove('open');
-    });
-  });
+var panel = document.getElementById('mobilePanel');
+function setMenu(open){
+  trigger.classList.toggle('open', open);
+  panel.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+trigger.addEventListener('click', function(){
+  setMenu(!panel.classList.contains('open'));
+});
+panel.querySelectorAll('a').forEach(function(a){
+  a.addEventListener('click', function(){ setMenu(false); });
+});
 
   // theme toggle (both nav button and playground switch stay in sync)
   var themeToggle = document.getElementById('themeToggle');

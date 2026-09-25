@@ -177,13 +177,18 @@
 
   .mobile-panel{
     position:fixed;inset:0;top:64px;
-    background:var(--bg);
+    background:color-mix(in srgb, var(--bg) 80%, transparent);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+    box-shadow:0 24px 60px -24px rgba(0,0,0,.45);
     z-index:90;
     padding:var(--space-4);
     transform:translateY(-8px);
     opacity:0;pointer-events:none;
     transition:opacity .3s var(--ease), transform .3s var(--ease);
-  }
+}
+
   .mobile-panel.open{opacity:1;transform:translateY(0);pointer-events:all;}
   .mobile-panel ul{list-style:none;display:flex;flex-direction:column;gap:var(--space-3);}
   .mobile-panel a{font-size:24px;font-family:'Space Grotesk',sans-serif;}
