@@ -42,24 +42,24 @@ if (eraContentEl) {
       title: "Learned HTML, CSS & JavaScript",
       kicker: "ORIGIN / FIRST WEB BUILDS",
       description: "Started building for the web, guided early on by a brother working professionally as a frontend developer. The first step was learning how pages are structured, styled, and made interactive.",
-      stamp: "BABBAGE & LOVELACE ERA",
-      caption: "2023 / THE DIFFERENCE ENGINE & THE FIRST ALGORITHM (1822–1890)",
+      stamp: "FIRST EDITION",
+      caption: "2023 / WHERE THE WEB JOURNEY BEGAN",
       progress: "25%"
     },
     "2024": {
       title: "Freelance & Client Work",
       kicker: "CLIENT WORK / EARLY BUILDS",
       description: "Took on small landing pages and storefront builds, learning to translate client briefs into working interfaces and to think beyond code about the people using what I built.",
-      stamp: "THE TRANSISTOR AGE",
-      caption: "2024 / THE TURING MACHINE & THE MICROCHIP (1936–1958)",
+      stamp: "FIELD NOTES",
+      caption: "2024 / FIRST REAL-WORLD BUILDS",
       progress: "50%"
     },
     "2025": {
       title: "Actively Learning React & TypeScript",
       kicker: "LEARNING / DIGITAL EDITION",
       description: "Spent this period actively learning React and TypeScript, studying component-based development, types, props, state, and modern frontend patterns through practice projects and experimentation.",
-      stamp: "THE WEB & CLOUD BOOM",
-      caption: "2025 / THE WORLD WIDE WEB & EARLY QUANTUM CLOUD (1990–2016)",
+      stamp: "LEARNING ARCHIVE",
+      caption: "2025 / BUILDING THE FRONTEND FOUNDATION",
       progress: "75%"
     },
     "2026": {
@@ -67,7 +67,7 @@ if (eraContentEl) {
       kicker: "UNIVERSITY / PRESENT DAY",
       description: "Began a Computer Science degree at the University of Ilorin, focusing early coursework alongside independent frontend study.",
       stamp: "CURRENT EDITION",
-      caption: "2026 / THE GENERATIVE AI ERA",
+      caption: "2026 / THE BEGINNING OF THE DEGREE",
       progress: "100%"
     }
   };
