@@ -18,32 +18,70 @@ a{color:inherit;text-decoration:none} button{font:inherit;color:inherit}
 
 /* Header + logo */
 .site-header{width:min(var(--max),calc(100% - 48px));margin:auto;height:88px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:relative;z-index:20;background:var(--bg)}
-.brand{display:flex;align-items:center}
-/* Brand text: "MUYIDEEN." sits naturally in flow. The dot and the hidden
-   "ABDULHAKEEM" both anchor to the same point right after "MUYIDEEN" — on
-   hover, ABDULHAKEEM fades in just after it, and the dot slides along to
-   land at its new end, so the full stop reads as having moved to it. */
-.brand-name{position:relative;display:inline-block;white-space:nowrap;font:11px "DM Mono",monospace;letter-spacing:.16em}
-.dot{position:absolute;top:50%;left:100%;transform:translate(0,-50%);color:var(--accent);transition:transform .55s cubic-bezier(.4,0,.2,1)}
-.brand-extra{position:absolute;top:50%;left:100%;transform:translate(4px,-50%);color:var(--accent);white-space:nowrap;pointer-events:none}
-/* Typewriter reveal: each letter pops in instantly at its own delay (no slide/fade
-   ramp — a real typewriter doesn't ease in), with a blinking cursor riding at the end. */
-.brand-extra .ch{display:inline-block;opacity:0;transition:opacity 0s step-end 0s}
-.brand:hover .brand-extra .ch{opacity:1}
-.brand-extra .ch:nth-child(1){transition-delay:0s}
-.brand-extra .ch:nth-child(2){transition-delay:.045s}
-.brand-extra .ch:nth-child(3){transition-delay:.09s}
-.brand-extra .ch:nth-child(4){transition-delay:.135s}
-.brand-extra .ch:nth-child(5){transition-delay:.18s}
-.brand-extra .ch:nth-child(6){transition-delay:.225s}
-.brand-extra .ch:nth-child(7){transition-delay:.27s}
-.brand-extra .ch:nth-child(8){transition-delay:.315s}
-.brand-extra .ch:nth-child(9){transition-delay:.36s}
-.brand-extra .ch:nth-child(10){transition-delay:.405s}
-.brand-extra .ch:nth-child(11){transition-delay:.45s}
-.type-cursor{display:inline-block;margin-left:1px;opacity:0;transition:opacity 0s step-end 0s}
-.brand:hover .type-cursor{opacity:1;animation:blink 1s steps(1) infinite}
-.brand:hover .dot{transform:translate(96px,-50%);transition-delay:.5s}
+.brand{display:flex;align-items:center;gap:11px}
+.logo-mark{display:inline-flex;align-items:center;gap:1px;font:18px/1 "DM Mono",monospace;font-weight:800;letter-spacing:-.03em;background:none;border:0;padding:0;transition:transform .2s}
+.logo-mark .letter-m{color:var(--text);font-weight:800}
+.logo-mark .letter-a{color:var(--accent);font-weight:800}
+.brand:hover .logo-mark{transform:translateY(-1px)}
+/* Brand text: nothing shows beside the logo at rest. On hover, the full name
+   prints itself out letter by letter like terminal output — green monospace
+   text with a glow, a "$" prompt, and a blinking cursor riding at the end. */
+.brand-name{position:relative;display:inline-block;font:11px "DM Mono",monospace;letter-spacing:.03em}
+.brand-reveal{position:absolute;top:50%;left:0;transform:translate(2px,-50%);color:var(--accent);text-shadow:0 0 8px currentColor;white-space:nowrap;pointer-events:none}
+.brand-reveal .prompt{display:inline-block;margin-right:6px;color:var(--muted);text-shadow:none;opacity:0;transition:opacity 0s step-end 0s}
+.brand-reveal .ch{display:inline-block;opacity:0;transition:opacity 0s step-end 0s}
+.type-cursor{display:inline-block;margin-left:1px;color:var(--accent);text-shadow:0 0 8px currentColor;opacity:0;transition:opacity 0s step-end 0s}
+
+/* Typing in (left to right): triggered by JS adding .opening on logo mouseenter. */
+.brand-reveal.opening .prompt{opacity:1}
+.brand-reveal.opening .ch{opacity:1}
+.brand-reveal.opening .ch:nth-child(2){transition-delay:0s}
+.brand-reveal.opening .ch:nth-child(3){transition-delay:.035s}
+.brand-reveal.opening .ch:nth-child(4){transition-delay:.07s}
+.brand-reveal.opening .ch:nth-child(5){transition-delay:.105s}
+.brand-reveal.opening .ch:nth-child(6){transition-delay:.14s}
+.brand-reveal.opening .ch:nth-child(7){transition-delay:.175s}
+.brand-reveal.opening .ch:nth-child(8){transition-delay:.21s}
+.brand-reveal.opening .ch:nth-child(9){transition-delay:.245s}
+.brand-reveal.opening .ch:nth-child(10){transition-delay:.28s}
+.brand-reveal.opening .ch:nth-child(11){transition-delay:.315s}
+.brand-reveal.opening .ch:nth-child(12){transition-delay:.35s}
+.brand-reveal.opening .ch:nth-child(13){transition-delay:.385s}
+.brand-reveal.opening .ch:nth-child(14){transition-delay:.42s}
+.brand-reveal.opening .ch:nth-child(15){transition-delay:.455s}
+.brand-reveal.opening .ch:nth-child(16){transition-delay:.49s}
+.brand-reveal.opening .ch:nth-child(17){transition-delay:.525s}
+.brand-reveal.opening .ch:nth-child(18){transition-delay:.56s}
+.brand-reveal.opening .ch:nth-child(19){transition-delay:.595s}
+.brand-reveal.opening .ch:nth-child(20){transition-delay:.63s}
+.brand-reveal.opening .ch:nth-child(21){transition-delay:.665s}
+.brand-reveal.opening .type-cursor{opacity:1;animation:blink 1s steps(1) infinite}
+
+/* Erasing (right to left): triggered by JS adding .closing on logo mouseleave —
+   the mirror image of the delays above, so the last letter goes first. */
+.brand-reveal.closing .ch{opacity:0}
+.brand-reveal.closing .type-cursor{opacity:0}
+.brand-reveal.closing .ch:nth-child(2){transition-delay:.665s}
+.brand-reveal.closing .ch:nth-child(3){transition-delay:.63s}
+.brand-reveal.closing .ch:nth-child(4){transition-delay:.595s}
+.brand-reveal.closing .ch:nth-child(5){transition-delay:.56s}
+.brand-reveal.closing .ch:nth-child(6){transition-delay:.525s}
+.brand-reveal.closing .ch:nth-child(7){transition-delay:.49s}
+.brand-reveal.closing .ch:nth-child(8){transition-delay:.455s}
+.brand-reveal.closing .ch:nth-child(9){transition-delay:.42s}
+.brand-reveal.closing .ch:nth-child(10){transition-delay:.385s}
+.brand-reveal.closing .ch:nth-child(11){transition-delay:.35s}
+.brand-reveal.closing .ch:nth-child(12){transition-delay:.315s}
+.brand-reveal.closing .ch:nth-child(13){transition-delay:.28s}
+.brand-reveal.closing .ch:nth-child(14){transition-delay:.245s}
+.brand-reveal.closing .ch:nth-child(15){transition-delay:.21s}
+.brand-reveal.closing .ch:nth-child(16){transition-delay:.175s}
+.brand-reveal.closing .ch:nth-child(17){transition-delay:.14s}
+.brand-reveal.closing .ch:nth-child(18){transition-delay:.105s}
+.brand-reveal.closing .ch:nth-child(19){transition-delay:.07s}
+.brand-reveal.closing .ch:nth-child(20){transition-delay:.035s}
+.brand-reveal.closing .ch:nth-child(21){transition-delay:0s}
+.brand-reveal.closing .prompt{transition-delay:.665s;opacity:0}
 .nav{display:flex;gap:30px;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
 .nav a{padding-bottom:6px;border-bottom:2px solid transparent;transition:border-color .2s,color .2s}
 .footer a{transition:color .2s}
@@ -159,5 +197,5 @@ h1 em,h2 em,.book-card p{font-family:"Bricolage Grotesque",sans-serif;font-weigh
 
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}.reveal.visible{opacity:1;transform:translateY(0)}
 
-@media(max-width:900px){.nav{display:none}.menu-toggle{display:flex}.hero{min-height:86vh}.project-card{grid-template-columns:35px 1fr}.project-visual{grid-column:2}.skills-grid{grid-template-columns:1fr 1fr}.skill-group:nth-child(2){border-right:0}.skill-group:nth-child(3),.skill-group:nth-child(4){border-top:1px solid var(--line)}.skill-group:nth-child(3){padding-left:0}.learning-grid,.about-grid{grid-template-columns:1fr;gap:55px}.journey-stage{grid-template-columns:1fr;height:auto;min-height:620px}.era-content{height:auto}.era-side{border-left:0;border-top:1px solid var(--line);min-height:190px}}
-@media(max-width:600px){.site-header,.hero,.section,.footer{width:min(100% - 30px,var(--max))}.site-header{height:72px}.brand-name,.availability{display:none}.mobile-nav{top:72px}.hero{padding-top:45px}.hero-meta span:last-child{display:none}.hero-copy{padding:85px 0}.hero h1{font-size:clamp(54px,16vw,84px)}.hero-description{font-size:14px}.section{padding:100px 0}.statement-content{margin-top:55px}.large-copy{font-size:34px}.section-heading{flex-direction:column;margin-bottom:50px}.project-card{display:block;padding:38px 0}.project-number{margin-bottom:25px}.project-info h2{font-size:49px}.project-visual{margin-top:38px;min-height:300px}.skills-grid{grid-template-columns:1fr}.skill-group,.skill-group:not(:first-child){border-right:0;border-bottom:1px solid var(--line);padding:28px 0;min-height:auto}.skill-group h3{margin-top:30px}.learning-grid{margin-top:55px}.now-card{min-height:280px}.journey-stage{height:auto;min-height:620px}.era-content{padding:55px 30px;height:auto}.era-side{padding:30px}.era-year{font-size:90px}.era-nav{overflow:hidden}.era-tab{padding:14px 5px}.footer{flex-direction:column;gap:12px}}
+@media(max-width:900px){.nav{display:none}.menu-toggle{display:flex}.brand-name{display:none}.hero{min-height:86vh}.project-card{grid-template-columns:35px 1fr}.project-visual{grid-column:2}.skills-grid{grid-template-columns:1fr 1fr}.skill-group:nth-child(2){border-right:0}.skill-group:nth-child(3),.skill-group:nth-child(4){border-top:1px solid var(--line)}.skill-group:nth-child(3){padding-left:0}.learning-grid,.about-grid{grid-template-columns:1fr;gap:55px}.journey-stage{grid-template-columns:1fr;height:auto;min-height:620px}.era-content{height:auto}.era-side{border-left:0;border-top:1px solid var(--line);min-height:190px}}
+@media(max-width:600px){.site-header,.hero,.section,.footer{width:min(100% - 30px,var(--max))}.site-header{height:72px}.availability{display:none}.mobile-nav{top:72px}.hero{padding-top:45px}.hero-meta span:last-child{display:none}.hero-copy{padding:85px 0}.hero h1{font-size:clamp(54px,16vw,84px)}.hero-description{font-size:14px}.section{padding:100px 0}.statement-content{margin-top:55px}.large-copy{font-size:34px}.section-heading{flex-direction:column;margin-bottom:50px}.project-card{display:block;padding:38px 0}.project-number{margin-bottom:25px}.project-info h2{font-size:49px}.project-visual{margin-top:38px;min-height:300px}.skills-grid{grid-template-columns:1fr}.skill-group,.skill-group:not(:first-child){border-right:0;border-bottom:1px solid var(--line);padding:28px 0;min-height:auto}.skill-group h3{margin-top:30px}.learning-grid{margin-top:55px}.now-card{min-height:280px}.journey-stage{height:auto;min-height:620px}.era-content{padding:55px 30px;height:auto}.era-side{padding:30px}.era-year{font-size:90px}.era-nav{overflow:hidden}.era-tab{padding:14px 5px}.footer{flex-direction:column;gap:12px}}

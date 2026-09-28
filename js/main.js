@@ -31,6 +31,27 @@ if (themeToggle) {
   });
 }
 
+// Logo hover: types the full name in on mouseenter, erases it right-to-left
+// on mouseleave. Two different orders can't come from a single CSS :hover
+// (the delay schedule would be symmetric both ways), so JS drives it by
+// swapping "opening" / "closing" classes that each carry their own
+// per-letter transition-delay schedule (see styles.css).
+const logoMark = document.querySelector(".logo-mark");
+const brandReveal = document.querySelector(".brand-reveal");
+if (logoMark && brandReveal) {
+  let closeTimer;
+  logoMark.addEventListener("mouseenter", () => {
+    clearTimeout(closeTimer);
+    brandReveal.classList.remove("closing");
+    brandReveal.classList.add("opening");
+  });
+  logoMark.addEventListener("mouseleave", () => {
+    brandReveal.classList.remove("opening");
+    brandReveal.classList.add("closing");
+    closeTimer = setTimeout(() => brandReveal.classList.remove("closing"), 700);
+  });
+}
+
 // Journey archive — ordered chronologically, starting at 2023.
 // Each year's backdrop borrows the mood of a real computing epoch:
 // 2023 -> Babbage/Lovelace/Hollerith (1822-1890), 2024 -> Turing/transistor/IC (1936-1958),
