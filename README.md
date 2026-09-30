@@ -93,4 +93,4 @@ The portfolio is deployed with **Vercel**.
 
 ---
 
-**Built with HTML, CSS, JavaScript, and a lot of curiosity.**
+**Built with HTML, CSS, JavaScript, and a lot of curiosity and sleepless nights.**
